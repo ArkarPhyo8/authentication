@@ -22,7 +22,7 @@ export async function POST(request: Request) {
       accessToken,
     };
 
-    return new Response(JSON.stringify(result));
+    return new Response(JSON.stringify(userWithoutPass));
   } else {
     return new Response(JSON.stringify(null));
   }

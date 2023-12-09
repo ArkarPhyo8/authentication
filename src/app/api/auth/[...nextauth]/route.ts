@@ -10,7 +10,6 @@ const handler = NextAuth({
         password: { label: "Password", type: "text" },
       },
       async authorize(credentials, req) {
-        // const user = { id: "1", name: "J Smith", email: "jsmith@example.com" };
         const res = await fetch("http://localhost:3000/api/login", {
           method: "POST",
           headers: {
@@ -23,8 +22,11 @@ const handler = NextAuth({
         });
 
         const user = await res.json();
+        console.log(user);
 
         if (user) {
+          console.log(user);
+
           return user;
         } else {
           return null;
@@ -34,6 +36,7 @@ const handler = NextAuth({
   ],
   callbacks: {
     async jwt({ token, user }) {
+      console.log(token);
       return { ...token, ...user };
     },
     async session({ session, token }) {
